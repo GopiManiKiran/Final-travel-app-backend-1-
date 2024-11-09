@@ -3,6 +3,15 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const tripRoutes = require('./routes/tripRoutes.js');
 
+import { BrowserRouter, Routes, Route, createBrowserRouter } from 'react-router-dom';
+
+const router = createBrowserRouter({
+  future: {
+    v7_relativeSplatPath: true, // Opt-in to v7's relative splat path behavior
+  },
+});
+
+
 const app = express();
 
 // Middleware
