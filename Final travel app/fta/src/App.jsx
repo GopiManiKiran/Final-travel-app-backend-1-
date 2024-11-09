@@ -1,21 +1,37 @@
 // frontend/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import HotelLinks from './components/HotelLinks'; // Import HotelLinks component
+import HotelLinks from './components/HotelLinks';
+
+// Create a router configuration with the v7_relativeSplatPath flag
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />,
+  },
+  {
+    path: '/bookings',
+    element: <HotelLinks destination="Your Destination" />,
+  },
+], {
+  future: {
+    v7_relativeSplatPath: true,
+  },
+});
 
 function App() {
   return (
-    <Router>
+    <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/bookings" element={<HotelLinks destination="Your Destination" />} /> {/* Route for HotelLinks */}
-      </Routes>
-    </Router>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
